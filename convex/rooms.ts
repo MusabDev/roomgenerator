@@ -25,7 +25,7 @@ export const createRoom = mutation({
     prompt: v.optional(v.string()),
   },
   handler: async ({ db, scheduler }, args) => {
-    const displayPrompt = `a ${args.theme} ${args.room}${
+    let displayPrompt = `a ${args.theme} ${args.room}${
       args.color ? ` in ${args.color} color` : ''
     }${args.prompt ? `, ${args.prompt}` : ''}`.toLowerCase()
 
@@ -33,7 +33,11 @@ export const createRoom = mutation({
 
     await scheduler.runAfter(0, internal.generate.generate, {
       roomId: room,
-      prompt: `${displayPrompt}, 4k, unreal engine`,
+      prompt: `${
+        args.room === 'Programming Room'
+          ? `a ${args.theme} programming room, a desk and computer, a bed, ${args.color} color`
+          : displayPrompt
+      }, 4k, unreal engine`,
     })
 
     return room
