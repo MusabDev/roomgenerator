@@ -3,7 +3,7 @@ import { z } from 'zod'
 
 export const env = createEnv({
   server: {
-    CONVEX_DEPLOYMENT: z.string(),
+    CONVEX_DEPLOYMENT: z.string().optional(),
     CONVEX_DEPLOY_KEY: z.string().optional(),
   },
   client: {
