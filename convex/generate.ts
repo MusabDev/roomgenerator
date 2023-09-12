@@ -21,7 +21,7 @@ export const generate = internalAction(
     })
 
     const output = (await replicate.run(
-      'stability-ai/sdxl:da77bc59ee60423279fd632efb4795ab731d9e3ca9705ef3341091fb989b7eaf',
+      'stability-ai/sdxl:8beff3369e81422112d93b89ca01426147de542cd4684c244b673b105188fe5f',
       {
         input: {
           prompt,
