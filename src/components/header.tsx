@@ -24,7 +24,7 @@ export function Header() {
 
   return (
     <header className="w-full border-b">
-      <div className="container flex flex-wrap items-center justify-between py-4 gap-x-6 gap-y-3">
+      <div className="container flex flex-wrap items-center justify-between gap-x-6 gap-y-3 py-4">
         <div className="flex flex-wrap items-center gap-x-8 gap-y-4">
           <Link
             href="/"
@@ -40,7 +40,7 @@ export function Header() {
                 href={item.href}
                 key={item.href}
                 className={cn(
-                  'font-medium text-foreground/70 hover:text-foreground transition-colors',
+                  'font-medium text-foreground/70 transition-colors hover:text-foreground',
                   pathname === item.href && 'text-foreground',
                 )}
               >
