@@ -17,6 +17,10 @@ const nav = [
     href: '/generate',
     label: 'Generate',
   },
+  {
+    href: '/explore',
+    label: 'Explore',
+  },
 ]
 
 export function Header() {

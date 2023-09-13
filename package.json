@@ -26,6 +26,7 @@
     "convex": "^1.2.1",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
+    "lodash.debounce": "^4.0.8",
     "lucide-react": "^0.274.0",
     "next": "13.4.19",
     "next-themes": "^0.2.1",
@@ -41,6 +42,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@types/lodash.debounce": "^4.0.7",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4"
   }
