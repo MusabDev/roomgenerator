@@ -24,6 +24,7 @@ import {
 } from '~/components/ui/select'
 import { cn, colors, rooms, themes } from '~/lib/utils'
 import { api } from '../../convex/_generated/api'
+import { Id } from '../../convex/_generated/dataModel'
 
 const formSchema = z.object({
   room: z.string(),
@@ -32,8 +33,14 @@ const formSchema = z.object({
   prompt: z.string().optional(),
 })
 
-export function GeneratePanel() {
-  const form = useForm<z.infer<typeof formSchema>>({
+type FormSchema = z.infer<typeof formSchema>
+
+export function GeneratePanel({
+  setRoomIds,
+}: {
+  setRoomIds: (roomIds: Id<'rooms'>[]) => void
+}) {
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   })
   const createRoomMutation = useMutation(api.rooms.createRoom)
@@ -41,7 +48,11 @@ export function GeneratePanel() {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(createRoomMutation)}
+        onSubmit={form.handleSubmit(async (values: FormSchema) => {
+          const roomId = await createRoomMutation(values)
+          // @ts-ignore
+          setRoomIds((currentRoomIds) => [...currentRoomIds, roomId])
+        })}
         className="space-y-8"
       >
         <FormField
