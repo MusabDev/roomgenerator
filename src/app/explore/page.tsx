@@ -1,9 +1,10 @@
 'use client'
 
-import { useQuery } from 'convex/react'
+import { usePaginatedQuery } from 'convex/react'
 import debounce from 'lodash.debounce'
 import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { Room } from '~/components/room'
 import { Input } from '~/components/ui/input'
@@ -18,7 +19,11 @@ export default function Explore({
 }) {
   const router = useRouter()
 
-  const roomsQuery = useQuery(api.rooms.getRooms)
+  const roomsQuery = usePaginatedQuery(
+    api.rooms.getRooms,
+    {},
+    { initialNumItems: 9 },
+  )
   const [filteredRooms, setFilteredRooms] = useState<
     Doc<'rooms'>[] | undefined
   >(undefined)
@@ -29,15 +34,13 @@ export default function Explore({
       debounce((query) => {
         console.log('debounce', query)
         setFilteredRooms(
-          roomsQuery?.filter((item) =>
+          roomsQuery.results?.filter((item) =>
             item.displayPrompt.toLowerCase().includes(query.toLowerCase()),
           ),
         )
       }, 1000),
-    [roomsQuery],
+    [roomsQuery.results],
   )
-
-  useEffect(() => {}, [searchParams.query])
 
   useEffect(() => {
     if (searchQuery) {
@@ -51,9 +54,9 @@ export default function Explore({
     if (searchParams.query) {
       filterData(searchParams.query ?? '')
     } else {
-      setFilteredRooms(roomsQuery)
+      setFilteredRooms(roomsQuery.results)
     }
-  }, [roomsQuery])
+  }, [roomsQuery.results])
 
   return (
     <section className="relative">
@@ -70,15 +73,25 @@ export default function Explore({
           />
         </div>
 
-        <div className="grid w-[-webkit-fill-available] gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredRooms ? (
-            filteredRooms
+        {filteredRooms ? (
+          <InfiniteScroll
+            className="grid w-[-webkit-fill-available] gap-6 md:grid-cols-2 lg:grid-cols-3"
+            dataLength={roomsQuery.results.length}
+            next={() => roomsQuery.loadMore(9)}
+            hasMore={roomsQuery.status === 'CanLoadMore'}
+            loader={<Skeleton className="aspect-square w-full rounded-xl" />}
+          >
+            {filteredRooms
               ?.filter((item) => item.image)
-              .map((item) => <Room {...item} key={item._id} />)
-          ) : (
+              .map((item) => <Room {...item} key={item._id} />)}
+          </InfiniteScroll>
+        ) : (
+          <div className="grid w-[-webkit-fill-available] gap-6 md:grid-cols-2 lg:grid-cols-3">
             <Skeleton className="aspect-square w-full rounded-xl" />
-          )}
-        </div>
+            <Skeleton className="aspect-square w-full rounded-xl" />
+            <Skeleton className="aspect-square w-full rounded-xl" />
+          </div>
+        )}
       </div>
     </section>
   )

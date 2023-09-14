@@ -17,7 +17,6 @@ export const themes: string[] = [
   'Coastal',
 ]
 export const rooms: string[] = [
-  'Programming Room',
   'Living Room',
   'Dining Room',
   'Office',
@@ -27,6 +26,7 @@ export const rooms: string[] = [
   'Basement',
   'Arabian Majlis',
   'Outdoor Patio',
+  'Programming Room',
 ]
 export const colors: string[] = [
   'White',

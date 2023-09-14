@@ -1,12 +1,16 @@
+import { paginationOptsValidator } from 'convex/server'
 import { v } from 'convex/values'
 import { internal } from './_generated/api'
 import { Id } from './_generated/dataModel'
 import { internalMutation, mutation, query } from './_generated/server'
 
-export const getRooms = query(async ({ db }) => {
-  const room = await db.query('rooms').order('desc').collect()
+export const getRooms = query({
+  args: { paginationOpts: paginationOptsValidator },
+  handler: async ({ db }, { paginationOpts }) => {
+    const room = await db.query('rooms').order('desc').paginate(paginationOpts)
 
-  return room
+    return room
+  },
 })
 
 export const getRoom = query(
