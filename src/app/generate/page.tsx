@@ -1,9 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+
 import { GeneratePanel } from '~/components/generate-panel'
+import { RoomPreview } from '~/components/room-preview'
 import { Id } from '../../../convex/_generated/dataModel'
-import { RoomPreview } from './room-preview'
 
 export default function Generate() {
   const [roomIds, setRoomIds] = useState<Id<'rooms'>[]>([])
