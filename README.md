@@ -2,7 +2,7 @@
 
 This is a simple room generator application powered by AI. I am using [Replicate](https://replicate.com) for the API and stability-ai/sdxl model. This application uses [Convex](https://convex.dev) as a backend service and I built this as a fun project.
 
------- video -------
+[![Room Generator Demo](https://img.youtube.com/vi/h-8QpqYG6EI/maxresdefault.jpg)](https://www.youtube.com/watch?v=h-8QpqYG6EI)
 
 ## Running Locally
 
