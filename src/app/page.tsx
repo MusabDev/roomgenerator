@@ -2,12 +2,21 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import { buttonVariants } from '~/components/ui/button'
+import { Separator } from '~/components/ui/separator'
 import { cn } from '~/lib/utils'
 
 export default function Home() {
   return (
     <section className="relative">
       <div className="container py-20 text-center">
+        <div className="mb-4 inline-flex items-center rounded-lg bg-background/80 px-3 py-2 text-sm font-medium backdrop-blur-md">
+          🥲{' '}
+          <Separator
+            orientation="vertical"
+            className="mx-2 h-4 w-[1px] shrink-0 bg-border"
+          />
+          <span>Generation may fail due to insufficient API credits.</span>
+        </div>
         <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-normal sm:text-7xl">
           Create your unique rooms using AI
         </h1>
