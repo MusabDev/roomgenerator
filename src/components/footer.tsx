@@ -6,10 +6,39 @@ export function Footer() {
     <footer className="border-t py-6">
       <div className="container flex items-center justify-between gap-4">
         <p className="text-muted-foreground">
-          Created and Maintained by{' '}
-          <Link href={siteConfig.website} className="font-semibold">
+          Created by{' '}
+          <Link
+            href={siteConfig.website}
+            target="_blank"
+            className="font-semibold"
+          >
             Musab
           </Link>
+          . Powered by{' '}
+          <Link
+            href="https://replicate.com"
+            target="_blank"
+            className="font-semibold"
+          >
+            Replicate
+          </Link>
+          ,{' '}
+          <Link
+            href="https://convex.dev"
+            target="_blank"
+            className="font-semibold"
+          >
+            Convex
+          </Link>{' '}
+          and{' '}
+          <Link
+            href="https://vercel.com"
+            target="_blank"
+            className="font-semibold"
+          >
+            Vercel
+          </Link>
+          .
         </p>
         <div className="flex items-center gap-4">
           <Link href={siteConfig.twitter}>
