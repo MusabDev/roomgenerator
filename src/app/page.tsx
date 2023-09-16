@@ -9,11 +9,11 @@ export default function Home() {
     <section className="relative">
       <div className="container py-20 text-center">
         <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-normal sm:text-7xl">
-          Instant room creation powered by AI
+          Create your unique rooms using AI
         </h1>
         <p className="mx-auto mb-8 mt-6 max-w-xl text-lg text-foreground/80">
-          Instantly generate your dream room with different themes. Join our
-          public beta test and remodel your room today!
+          Creating your own unique rooms is a breeze – all it takes is a handful
+          of straightforward steps.
         </p>
         <Link
           href="/generate"
