@@ -21,6 +21,12 @@ CONVEX_DEPLOY_KEY="" # Required for production
 NEXT_PUBLIC_CONVEX_URL=""
 ```
 
+### Installing the dependencies
+
+```
+npm install
+```
+
 ### Setting up Convex
 
 You have to add Replicate API key as an environment variable in the [Convex](https://convex.dev) dashboard. You can check their guide at [https://docs.convex.dev/production/environment-variables](https://docs.convex.dev/production/environment-variables)
