@@ -9,5 +9,7 @@ export default defineSchema({
     prompt: v.optional(v.string()),
     displayPrompt: v.string(),
     image: v.optional(v.string()),
+  }).searchIndex('search_prompt', {
+    searchField: 'displayPrompt',
   }),
 })
