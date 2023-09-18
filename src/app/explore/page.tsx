@@ -18,7 +18,6 @@ export default function Explore() {
       { initialNumItems: 18 },
     ) || []
 
-  console.log(roomsQuery)
   return (
     <section className="relative">
       <div className="container py-10 text-center">
