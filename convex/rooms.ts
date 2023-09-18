@@ -5,16 +5,21 @@ import { Id } from './_generated/dataModel'
 import { internalMutation, mutation, query } from './_generated/server'
 
 export const getRooms = query({
-  args: { paginationOpts: paginationOptsValidator, query: v.string() },
+  args: {
+    paginationOpts: paginationOptsValidator,
+    query: v.optional(v.string()),
+  },
   handler: async ({ db }, { paginationOpts, query }) => {
-    if (query === '') {
+    if (query && query !== '') {
+      return await db
+        .query('rooms')
+        .withSearchIndex('search_prompt', (q) =>
+          q.search('displayPrompt', query),
+        )
+        .paginate(paginationOpts)
+    } else {
       return await db.query('rooms').order('desc').paginate(paginationOpts)
     }
-
-    return await db
-      .query('rooms')
-      .withSearchIndex('search_prompt', (q) => q.search('displayPrompt', query))
-      .paginate(paginationOpts)
   },
 })
 
