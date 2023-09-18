@@ -49,4 +49,8 @@ Then, run the development server for Convex:
 npx run convex
 ```
 
+### Changing configuration
+
+You can change the configuration in `src/config/site.ts` file. The 'enable' feature is the most important option that ensures whether the app will work or not.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. Finally, you have successfully set up the project on your local machine.

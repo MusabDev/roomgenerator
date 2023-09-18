@@ -22,6 +22,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '~/components/ui/select'
+import { siteConfig } from '~/config/site'
 import { cn, colors, rooms, themes } from '~/lib/utils'
 import { api } from '../../convex/_generated/api'
 import { Id } from '../../convex/_generated/dataModel'
@@ -173,7 +174,14 @@ export function GeneratePanel({
             </FormItem>
           )}
         />
-        <Button type="submit">Generate room</Button>
+        <Button type="submit" disabled={!siteConfig.enabled}>
+          Generate room
+        </Button>
+        {!siteConfig.enabled && (
+          <p className="text-destructive">
+            Generation disabled due to insufficient API credits.
+          </p>
+        )}
       </form>
     </Form>
   )
