@@ -11,12 +11,14 @@ import { api } from '../../../convex/_generated/api'
 
 export default function Explore() {
   const [searchText, setSearchText] = useState('')
-  const roomsQuery = usePaginatedQuery(
-    api.rooms.getRooms,
-    { query: searchText },
-    { initialNumItems: 18 },
-  )
+  const roomsQuery =
+    usePaginatedQuery(
+      api.rooms.getRooms,
+      { query: searchText },
+      { initialNumItems: 18 },
+    ) || []
 
+  console.log(roomsQuery)
   return (
     <section className="relative">
       <div className="container py-10 text-center">
@@ -28,7 +30,7 @@ export default function Explore() {
           />
         </div>
 
-        {!roomsQuery.isLoading && roomsQuery.results ? (
+        {roomsQuery?.results.length > 0 ? (
           <InfiniteScroll
             className="grid w-[-webkit-fill-available] gap-6 md:grid-cols-2 lg:grid-cols-3"
             dataLength={roomsQuery.results.length}

@@ -18,7 +18,11 @@ export const getRooms = query({
         )
         .paginate(paginationOpts)
     } else {
-      return await db.query('rooms').order('desc').paginate(paginationOpts)
+      return await db
+        .query('rooms')
+        .filter((q) => q.neq(q.field('image'), undefined))
+        .order('desc')
+        .paginate(paginationOpts)
     }
   },
 })
